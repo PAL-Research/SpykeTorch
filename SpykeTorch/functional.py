@@ -35,6 +35,21 @@ def pooling(input, kernel_size, stride=None, padding=0):
     """
     return fn.max_pool2d(input, kernel_size, stride, padding)
 
+def unpooling(input, indices, kernel_size, stride=None, padding=0):
+    r"""Performs a 2D max-unpooling over an input signal (spike-wave or potentials) composed of several input
+    planes.
+
+    Args:
+        input (Tensor): The input tensor.
+        kernel_size (int or tuple): Size of the pooling window.
+        stride (int or tuple, optional): Stride of the pooling window. Default: None
+        padding (int or tuple, optional): Size of the padding. Default: 0
+
+    Returns:
+        Tensor: The result of the max-pooling operation.
+    """
+    return fn.max_unpool2d(input, indices, kernel_size, stride, padding)
+
 def fire(potentials, threshold=None, return_thresholded_potentials=False):
     r"""Computes the spike-wave tensor from tensor of potentials. If :attr:`threshold` is :attr:`None`, all the neurons
     emit one spike (if the potential is greater than zero) in the last time step.
